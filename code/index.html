@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proxy Viewer</title>
+</head>
+<body>
+  <input type="text" id="url" placeholder="Enter HTTP/HTTPS URL">
+  <button onclick="fetchProxy()">Fetch</button>
+  <div id="output" style="white-space: pre-wrap; border:1px solid #ccc; height:400px; overflow:auto;"></div>
+
+  <script>
+    async function fetchProxy() {
+      const url = document.getElementById('url').value;
+      const response = await fetch(`http://127.0.0.1:5000/fetch?url=${encodeURIComponent(url)}`);
+      const text = await response.text();
+      document.getElementById('output').textContent = text;
+    }
+  </script>
+</body>
+</html>
